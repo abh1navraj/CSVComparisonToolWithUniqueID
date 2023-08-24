@@ -11,6 +11,7 @@ import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 
 import com.base.Base;
+import com.util.HeaderMapper;
 import com.util.TargetFilePropertyList;
 
 public class TargetFileReader extends Base {
@@ -26,10 +27,10 @@ public class TargetFileReader extends Base {
 			File csvData = new File(prop.getProperty("csv.targetFilesPath") + "/" + targetFileName);
 			CSVParser parser = CSVParser.parse(csvData, StandardCharsets.UTF_8, CSVFormat.DEFAULT.builder().setHeader().setSkipHeaderRecord(true).setIgnoreHeaderCase(true).build());
 			
-			TargetFilePropertyList targetFilePropList = new TargetFilePropertyList();
+		
 			String targetUniqueId = prop.getProperty("csv.targetUniqueId");
-			
-			ArrayList<String> targetProperties = targetFilePropList.getTargetPropertyList();
+			TargetFilePropertyList targetFilePropList = new TargetFilePropertyList();
+			ArrayList<String> targetProperties = targetFilePropList.getTargetFilePropertyList();
 			for (CSVRecord csvRecord : parser) {
 				
 				
@@ -37,8 +38,13 @@ public class TargetFileReader extends Base {
 				rowData.put(targetUniqueId, csvRecord.get(targetUniqueId));
 				for(String targetProp : targetProperties)
 				{
+					if(csvRecord.isMapped(targetProp))
 					rowData.put(targetProp, csvRecord.get(targetProp));
+					else
+						rowData.put(targetProp, "");
+						
 				}
+				rowData.put("Flag", "RED");
 				targetFileData.put(csvRecord.get(targetUniqueId), rowData);
 				
 			}

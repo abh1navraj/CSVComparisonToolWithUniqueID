@@ -6,6 +6,7 @@ import java.util.Set;
 import com.base.Base;
 import com.util.SourceFilePropertyList;
 import com.util.TargetFilePropertyList;
+import com.util.HeaderMapper;
 
 public class ReportHeaderReader extends Base {
 	/**
@@ -16,12 +17,14 @@ public class ReportHeaderReader extends Base {
 		
 		ArrayList<String> reportHeader = new ArrayList<String>();
 		reportHeader.add("OverAllStatus");
+		reportHeader.add(prop.getProperty("csv.sourceUniqueId"));
+		reportHeader.add(prop.getProperty("csv.targetUniqueId"));
+
 		
-		SourceFilePropertyList sourceFilePropList = new SourceFilePropertyList();
-		ArrayList<String> sourceProperties = sourceFilePropList.getSourcePropertyList();
+		ArrayList<String> sourceProperties = SourceFilePropertyList.sourcePropertyList;
 		
 		TargetFilePropertyList targetFilePropList = new TargetFilePropertyList();
-		ArrayList<String> targetProperties = targetFilePropList.getTargetPropertyList();
+		ArrayList<String> targetProperties = targetFilePropList.getTargetFilePropertyList();
 		for(int i =0; i< sourceProperties.size(); i++)
 		{
 			reportHeader.add("Source_" + sourceProperties.get(i));
