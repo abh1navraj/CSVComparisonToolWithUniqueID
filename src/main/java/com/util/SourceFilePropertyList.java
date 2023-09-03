@@ -41,9 +41,9 @@ public class SourceFilePropertyList extends Base {
 			String header = bufferedReader.readLine();
 			List<String> sourcePropertyListWithUniqueId = Arrays.asList(header.split(","));
 			sourcePropertyList.addAll(sourcePropertyListWithUniqueId);
-			System.out.println(sourcePropertyList);
+			
 			sourcePropertyList.remove(prop.get("csv.sourceUniqueId"));
-			System.out.println(sourcePropertyList);
+			
 
 		} catch (IOException e) {
 			System.out.println("Error in Parsing header property from source files.");

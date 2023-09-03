@@ -1,13 +1,15 @@
 package com.util;
 
+import org.apache.poi.hssf.util.HSSFColor.HSSFColorPredefined;
 import org.apache.poi.ss.usermodel.BorderStyle;
-import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.FillPatternType;
+import org.apache.poi.ss.usermodel.Font;
 import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.xssf.streaming.SXSSFCell;
 import org.apache.poi.xssf.streaming.SXSSFRow;
 import org.apache.poi.xssf.streaming.SXSSFSheet;
 import org.apache.poi.xssf.streaming.SXSSFWorkbook;
+import org.apache.poi.xssf.usermodel.XSSFCellStyle;
 import org.apache.poi.xssf.usermodel.XSSFFont;
 
 public class ExcelUtil {
@@ -56,198 +58,270 @@ public class ExcelUtil {
 	/**
 	 * creates a header cell style
 	 * @param workbook
-	 * @return a new CellStyle
+	 * @return a new XSSFCellStyle
 	 */
-	public CellStyle createHeaderCellStyle(SXSSFWorkbook workbook) {
-		CellStyle headerCellStyle = workbook.createCellStyle();
-		headerCellStyle.setFillForegroundColor(IndexedColors.TEAL.getIndex());
-		headerCellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
-		headerCellStyle.setBorderBottom(BorderStyle.THIN);
-		headerCellStyle.setBorderTop(BorderStyle.THIN);
-		headerCellStyle.setBorderLeft(BorderStyle.THIN);
-		headerCellStyle.setBorderRight(BorderStyle.THIN);
+	public XSSFCellStyle createHeaderXSSFCellStyle(SXSSFWorkbook workbook) {
+		XSSFCellStyle headerXSSFCellStyle = (XSSFCellStyle) workbook.createCellStyle();
+		headerXSSFCellStyle.setFillForegroundColor(IndexedColors.TEAL.getIndex());
+		headerXSSFCellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+		headerXSSFCellStyle.setBorderBottom(BorderStyle.THIN);
+		headerXSSFCellStyle.setBorderTop(BorderStyle.THIN);
+		headerXSSFCellStyle.setBorderLeft(BorderStyle.THIN);
+		headerXSSFCellStyle.setBorderRight(BorderStyle.THIN);
 		
-		XSSFFont font = new XSSFFont();
+		Font font = workbook.createFont();
 		font.setBold(true);
-		headerCellStyle.setFont(font);
+		headerXSSFCellStyle.setFont(font);
 
-		return headerCellStyle;
+		return headerXSSFCellStyle;
 	}
 	
 	/**
 	 * Creates a cell styel for overall status cell
 	 * @param workbook
-	 * @return a new CellStyle
+	 * @return a new XSSFCellStyle
 	 */
-	public CellStyle createOverAllStatusCellStyle(SXSSFWorkbook workbook) {
-		CellStyle overAllStatusCellStyle = workbook.createCellStyle();
-		overAllStatusCellStyle.setFillForegroundColor(IndexedColors.AQUA.getIndex());
-		overAllStatusCellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
-		overAllStatusCellStyle.setBorderBottom(BorderStyle.THIN);
-		overAllStatusCellStyle.setBorderTop(BorderStyle.THIN);
-		overAllStatusCellStyle.setBorderLeft(BorderStyle.THIN);
-		overAllStatusCellStyle.setBorderRight(BorderStyle.THIN);
+	public XSSFCellStyle createOverAllStatusXSSFCellStyle(SXSSFWorkbook workbook) {
+		XSSFCellStyle overAllStatusXSSFCellStyle = (XSSFCellStyle) workbook.createCellStyle();
+		overAllStatusXSSFCellStyle.setFillForegroundColor(IndexedColors.AQUA.getIndex());
+		overAllStatusXSSFCellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+		overAllStatusXSSFCellStyle.setBorderBottom(BorderStyle.THIN);
+		overAllStatusXSSFCellStyle.setBorderTop(BorderStyle.THIN);
+		overAllStatusXSSFCellStyle.setBorderLeft(BorderStyle.THIN);
+		overAllStatusXSSFCellStyle.setBorderRight(BorderStyle.THIN);
 		
-		XSSFFont font = new XSSFFont();
+		Font font = workbook.createFont();
 		font.setBold(true);
-		overAllStatusCellStyle.setFont(font);
+		overAllStatusXSSFCellStyle.setFont(font);
 
-		return overAllStatusCellStyle;
+		return overAllStatusXSSFCellStyle;
 	}
 	
 	/**
 	 * Creates a cell style for matched data cell
 	 * @param workbook
-	 * @return a new CellStyle
+	 * @return a new XSSFCellStyle
 	 */
-	public CellStyle createPassedDataCellStyle(SXSSFWorkbook workbook) {
-		CellStyle passedDataCellStyle = workbook.createCellStyle();
-		passedDataCellStyle.setFillForegroundColor(IndexedColors.LIGHT_GREEN.getIndex());
-		passedDataCellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
-		passedDataCellStyle.setBorderBottom(BorderStyle.THIN);
-		passedDataCellStyle.setBorderTop(BorderStyle.THIN);
-		passedDataCellStyle.setBorderLeft(BorderStyle.THIN);
-		passedDataCellStyle.setBorderRight(BorderStyle.THIN);
+	public XSSFCellStyle createPassedDataXSSFCellStyle(SXSSFWorkbook workbook) {
+		XSSFCellStyle passedDataXSSFCellStyle = (XSSFCellStyle) workbook.createCellStyle();
+		passedDataXSSFCellStyle.setFillForegroundColor(IndexedColors.LIGHT_GREEN.getIndex());
+		passedDataXSSFCellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+		passedDataXSSFCellStyle.setBorderBottom(BorderStyle.THIN);
+		passedDataXSSFCellStyle.setBorderTop(BorderStyle.THIN);
+		passedDataXSSFCellStyle.setBorderLeft(BorderStyle.THIN);
+		passedDataXSSFCellStyle.setBorderRight(BorderStyle.THIN);
 		
 
-		return passedDataCellStyle;
+		return passedDataXSSFCellStyle;
 	}
 	
 	/**
 	 * Creates a overall status cell style for matched data cell
 	 * @param workbook
-	 * @return a new CellStyle
+	 * @return a new XSSFCellStyle
 	 */
-	public CellStyle createPassedOverallStatusCellStyle(SXSSFWorkbook workbook) {
-		CellStyle passedOverallStatusCellStyle = workbook.createCellStyle();
-		passedOverallStatusCellStyle.setFillForegroundColor(IndexedColors.BRIGHT_GREEN.getIndex());
-		passedOverallStatusCellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
-		passedOverallStatusCellStyle.setBorderBottom(BorderStyle.THIN);
-		passedOverallStatusCellStyle.setBorderTop(BorderStyle.THIN);
-		passedOverallStatusCellStyle.setBorderLeft(BorderStyle.THIN);
-		passedOverallStatusCellStyle.setBorderRight(BorderStyle.THIN);
+	public XSSFCellStyle createPassedOverallStatusXSSFCellStyle(SXSSFWorkbook workbook) {
+		XSSFCellStyle passedOverallStatusXSSFCellStyle = (XSSFCellStyle) workbook.createCellStyle();
+		passedOverallStatusXSSFCellStyle.setFillForegroundColor(IndexedColors.BRIGHT_GREEN.getIndex());
+		passedOverallStatusXSSFCellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+		passedOverallStatusXSSFCellStyle.setBorderBottom(BorderStyle.THIN);
+		passedOverallStatusXSSFCellStyle.setBorderTop(BorderStyle.THIN);
+		passedOverallStatusXSSFCellStyle.setBorderLeft(BorderStyle.THIN);
+		passedOverallStatusXSSFCellStyle.setBorderRight(BorderStyle.THIN);
 		
-		XSSFFont font = new XSSFFont();
+		Font font = workbook.createFont();
 		font.setBold(true);
-		passedOverallStatusCellStyle.setFont(font);
+		passedOverallStatusXSSFCellStyle.setFont(font);
 		
-		return passedOverallStatusCellStyle;
+		return passedOverallStatusXSSFCellStyle;
+	}
+	
+	/**
+	 * Creates a Passed date with Invalid date format cell style for matched data cell
+	 * @param workbook
+	 * @return a new XSSFCellStyle
+	 */
+	public XSSFCellStyle createPassInvalidDateFormatXSSFCellStyle(SXSSFWorkbook workbook) {
+		XSSFCellStyle passInvalidDateFormatXSSFCellStyle = (XSSFCellStyle) workbook.createCellStyle();
+		passInvalidDateFormatXSSFCellStyle.setFillForegroundColor(IndexedColors.LIGHT_GREEN.getIndex());
+		passInvalidDateFormatXSSFCellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+		passInvalidDateFormatXSSFCellStyle.setBorderBottom(BorderStyle.THIN);
+		passInvalidDateFormatXSSFCellStyle.setBorderTop(BorderStyle.THIN);
+		passInvalidDateFormatXSSFCellStyle.setBorderLeft(BorderStyle.THIN);
+		passInvalidDateFormatXSSFCellStyle.setBorderRight(BorderStyle.THIN);
+		
+		Font font = workbook.createFont();
+		font.setBold(false);
+		font.setColor(HSSFColorPredefined.RED.getIndex());
+		passInvalidDateFormatXSSFCellStyle.setFont(font);
+		
+		return passInvalidDateFormatXSSFCellStyle;
 	}
 	
 	/**
 	 * Creates a overall status cell style for mismatched data cell
 	 * @param workbook
-	 * @return a new CellStyle
+	 * @return a new XSSFCellStyle
 	 */
-	public CellStyle createFailedDataCellStyle(SXSSFWorkbook workbook) {
-		CellStyle failedDataCellStyle = workbook.createCellStyle();
-		failedDataCellStyle.setFillForegroundColor(IndexedColors.CORAL.getIndex());
-		failedDataCellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
-		failedDataCellStyle.setBorderBottom(BorderStyle.THIN);
-		failedDataCellStyle.setBorderTop(BorderStyle.THIN);
-		failedDataCellStyle.setBorderLeft(BorderStyle.THIN);
-		failedDataCellStyle.setBorderRight(BorderStyle.THIN);
+	public XSSFCellStyle createFailedDataXSSFCellStyle(SXSSFWorkbook workbook) {
+		XSSFCellStyle failedDataXSSFCellStyle = (XSSFCellStyle) workbook.createCellStyle();
+		failedDataXSSFCellStyle.setFillForegroundColor(IndexedColors.CORAL.getIndex());
+		failedDataXSSFCellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+		failedDataXSSFCellStyle.setBorderBottom(BorderStyle.THIN);
+		failedDataXSSFCellStyle.setBorderTop(BorderStyle.THIN);
+		failedDataXSSFCellStyle.setBorderLeft(BorderStyle.THIN);
+		failedDataXSSFCellStyle.setBorderRight(BorderStyle.THIN);
 		
 
-		return failedDataCellStyle;
+		return failedDataXSSFCellStyle;
 	}
 	
 	/**
 	 * Creates a overall status cell style for mismatched data cell
 	 * @param workbook
-	 * @return a new CellStyle
+	 * @return a new XSSFCellStyle
 	 */
-	public CellStyle createFailedOverallStatusCellStyle(SXSSFWorkbook workbook) {
-		CellStyle failedOverallStatusCellStyle = workbook.createCellStyle();
-		failedOverallStatusCellStyle.setFillForegroundColor(IndexedColors.RED.getIndex());
-		failedOverallStatusCellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
-		failedOverallStatusCellStyle.setBorderBottom(BorderStyle.THIN);
-		failedOverallStatusCellStyle.setBorderTop(BorderStyle.THIN);
-		failedOverallStatusCellStyle.setBorderLeft(BorderStyle.THIN);
-		failedOverallStatusCellStyle.setBorderRight(BorderStyle.THIN);
+	public XSSFCellStyle createFailedOverallStatusXSSFCellStyle(SXSSFWorkbook workbook) {
+		XSSFCellStyle failedOverallStatusXSSFCellStyle = (XSSFCellStyle) ((SXSSFWorkbook) workbook).createCellStyle();
+		failedOverallStatusXSSFCellStyle.setFillForegroundColor(IndexedColors.RED.getIndex());
+		failedOverallStatusXSSFCellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+		failedOverallStatusXSSFCellStyle.setBorderBottom(BorderStyle.THIN);
+		failedOverallStatusXSSFCellStyle.setBorderTop(BorderStyle.THIN);
+		failedOverallStatusXSSFCellStyle.setBorderLeft(BorderStyle.THIN);
+		failedOverallStatusXSSFCellStyle.setBorderRight(BorderStyle.THIN);
 		
-		XSSFFont font = new XSSFFont();
+		Font font = workbook.createFont();
+		font.setBold(false);
+		failedOverallStatusXSSFCellStyle.setFont(font);
+		
+		return failedOverallStatusXSSFCellStyle;
+	}
+	
+	/**
+	 * Creates a Fail Invalid Date Format cell style for mismatched data cell
+	 * @param workbook
+	 * @return a new XSSFCellStyle
+	 */
+	public XSSFCellStyle createFailInvalidDateFormatXSSFCellStyle(SXSSFWorkbook workbook) {
+		XSSFCellStyle failedOverallStatusXSSFCellStyle = (XSSFCellStyle) workbook.createCellStyle();
+		failedOverallStatusXSSFCellStyle.setFillForegroundColor(IndexedColors.CORAL.getIndex());
+		failedOverallStatusXSSFCellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+		failedOverallStatusXSSFCellStyle.setBorderBottom(BorderStyle.THIN);
+		failedOverallStatusXSSFCellStyle.setBorderTop(BorderStyle.THIN);
+		failedOverallStatusXSSFCellStyle.setBorderLeft(BorderStyle.THIN);
+		failedOverallStatusXSSFCellStyle.setBorderRight(BorderStyle.THIN);
+		
+		Font font = workbook.createFont();
+		font.setBold(false);
+		font.setColor(HSSFColorPredefined.DARK_RED.getIndex());
+		failedOverallStatusXSSFCellStyle.setFont(font);
+		
+		return failedOverallStatusXSSFCellStyle;
+	}
+	
+	
+	/**
+	 * Creates a cell style for target missing data cell
+	 * @param workbook
+	 * @return a new XSSFCellStyle
+	 */
+	public XSSFCellStyle createTargetMissingDataXSSFCellStyle(SXSSFWorkbook workbook) {
+		XSSFCellStyle targetMissingDataXSSFCellStyle = (XSSFCellStyle) workbook.createCellStyle();
+		targetMissingDataXSSFCellStyle.setFillForegroundColor(IndexedColors.GREY_25_PERCENT.getIndex());
+		targetMissingDataXSSFCellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+		targetMissingDataXSSFCellStyle.setBorderBottom(BorderStyle.THIN);
+		targetMissingDataXSSFCellStyle.setBorderTop(BorderStyle.THIN);
+		targetMissingDataXSSFCellStyle.setBorderLeft(BorderStyle.THIN);
+		targetMissingDataXSSFCellStyle.setBorderRight(BorderStyle.THIN);
+		
+
+		return targetMissingDataXSSFCellStyle;
+	}
+	/**
+	 * Creates a cell style for target missing data cell
+	 * @param workbook
+	 * @return a new XSSFCellStyle
+	 */
+	public XSSFCellStyle createTargetMissingOverallStatusXSSFCellStyle(SXSSFWorkbook workbook) {
+		XSSFCellStyle targetMissingOverallStatusXSSFCellStyle = (XSSFCellStyle) workbook.createCellStyle();
+		targetMissingOverallStatusXSSFCellStyle.setFillForegroundColor(IndexedColors.GREY_50_PERCENT.getIndex());
+		targetMissingOverallStatusXSSFCellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+		targetMissingOverallStatusXSSFCellStyle.setBorderBottom(BorderStyle.THIN);
+		targetMissingOverallStatusXSSFCellStyle.setBorderTop(BorderStyle.THIN);
+		targetMissingOverallStatusXSSFCellStyle.setBorderLeft(BorderStyle.THIN);
+		targetMissingOverallStatusXSSFCellStyle.setBorderRight(BorderStyle.THIN);
+		
+		Font font = workbook.createFont();
 		font.setBold(true);
-		failedOverallStatusCellStyle.setFont(font);
-		
-		return failedOverallStatusCellStyle;
+		targetMissingOverallStatusXSSFCellStyle.setFont(font);
+
+		return targetMissingOverallStatusXSSFCellStyle;
 	}
 	
 	/**
 	 * Creates a cell style for target missing data cell
 	 * @param workbook
-	 * @return a new CellStyle
+	 * @return a new XSSFCellStyle
 	 */
-	public CellStyle createTargetMissingDataCellStyle(SXSSFWorkbook workbook) {
-		CellStyle targetMissingDataCellStyle = workbook.createCellStyle();
-		targetMissingDataCellStyle.setFillForegroundColor(IndexedColors.GREY_25_PERCENT.getIndex());
-		targetMissingDataCellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
-		targetMissingDataCellStyle.setBorderBottom(BorderStyle.THIN);
-		targetMissingDataCellStyle.setBorderTop(BorderStyle.THIN);
-		targetMissingDataCellStyle.setBorderLeft(BorderStyle.THIN);
-		targetMissingDataCellStyle.setBorderRight(BorderStyle.THIN);
+	public XSSFCellStyle createSourceMissingDataXSSFCellStyle(SXSSFWorkbook workbook) {
+		XSSFCellStyle sourceMissingDataXSSFCellStyle = (XSSFCellStyle) workbook.createCellStyle();
+		sourceMissingDataXSSFCellStyle.setFillForegroundColor(IndexedColors.LEMON_CHIFFON.getIndex());
+		sourceMissingDataXSSFCellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+		sourceMissingDataXSSFCellStyle.setBorderBottom(BorderStyle.THIN);
+		sourceMissingDataXSSFCellStyle.setBorderTop(BorderStyle.THIN);
+		sourceMissingDataXSSFCellStyle.setBorderLeft(BorderStyle.THIN);
+		sourceMissingDataXSSFCellStyle.setBorderRight(BorderStyle.THIN);
 		
 
-		return targetMissingDataCellStyle;
-	}
-	/**
-	 * Creates a cell style for target missing data cell
-	 * @param workbook
-	 * @return a new CellStyle
-	 */
-	public CellStyle createTargetMissingOverallStatusCellStyle(SXSSFWorkbook workbook) {
-		CellStyle targetMissingOverallStatusCellStyle = workbook.createCellStyle();
-		targetMissingOverallStatusCellStyle.setFillForegroundColor(IndexedColors.GREY_50_PERCENT.getIndex());
-		targetMissingOverallStatusCellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
-		targetMissingOverallStatusCellStyle.setBorderBottom(BorderStyle.THIN);
-		targetMissingOverallStatusCellStyle.setBorderTop(BorderStyle.THIN);
-		targetMissingOverallStatusCellStyle.setBorderLeft(BorderStyle.THIN);
-		targetMissingOverallStatusCellStyle.setBorderRight(BorderStyle.THIN);
-		
-		XSSFFont font = new XSSFFont();
-		font.setBold(true);
-		targetMissingOverallStatusCellStyle.setFont(font);
-
-		return targetMissingOverallStatusCellStyle;
+		return sourceMissingDataXSSFCellStyle;
 	}
 	
 	/**
 	 * Creates a cell style for target missing data cell
 	 * @param workbook
-	 * @return a new CellStyle
+	 * @return a new XSSFCellStyle
 	 */
-	public CellStyle createSourceMissingDataCellStyle(SXSSFWorkbook workbook) {
-		CellStyle sourceMissingDataCellStyle = workbook.createCellStyle();
-		sourceMissingDataCellStyle.setFillForegroundColor(IndexedColors.LEMON_CHIFFON.getIndex());
-		sourceMissingDataCellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
-		sourceMissingDataCellStyle.setBorderBottom(BorderStyle.THIN);
-		sourceMissingDataCellStyle.setBorderTop(BorderStyle.THIN);
-		sourceMissingDataCellStyle.setBorderLeft(BorderStyle.THIN);
-		sourceMissingDataCellStyle.setBorderRight(BorderStyle.THIN);
+	public XSSFCellStyle createSourceMissingOverallStatusXSSFCellStyle(SXSSFWorkbook workbook) {
+		XSSFCellStyle sourceMissingOverallStatusXSSFCellStyle = (XSSFCellStyle) workbook.createCellStyle();
+		sourceMissingOverallStatusXSSFCellStyle.setFillForegroundColor(IndexedColors.LIGHT_YELLOW.getIndex());
+		sourceMissingOverallStatusXSSFCellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+		sourceMissingOverallStatusXSSFCellStyle.setBorderBottom(BorderStyle.THIN);
+		sourceMissingOverallStatusXSSFCellStyle.setBorderTop(BorderStyle.THIN);
+		sourceMissingOverallStatusXSSFCellStyle.setBorderLeft(BorderStyle.THIN);
+		sourceMissingOverallStatusXSSFCellStyle.setBorderRight(BorderStyle.THIN);
 		
+		Font font = workbook.createFont();
+		font.setBold(true);
+		sourceMissingOverallStatusXSSFCellStyle.setFont(font);
 
-		return sourceMissingDataCellStyle;
+		return sourceMissingOverallStatusXSSFCellStyle;
 	}
 	
 	/**
-	 * Creates a cell style for target missing data cell
+	 * Creates a cell style for general data cell
 	 * @param workbook
-	 * @return a new CellStyle
+	 * @return a new XSSFCellStyle
 	 */
-	public CellStyle createSourceMissingOverallStatusCellStyle(SXSSFWorkbook workbook) {
-		CellStyle sourceMissingOverallStatusCellStyle = workbook.createCellStyle();
-		sourceMissingOverallStatusCellStyle.setFillForegroundColor(IndexedColors.LIGHT_YELLOW.getIndex());
-		sourceMissingOverallStatusCellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
-		sourceMissingOverallStatusCellStyle.setBorderBottom(BorderStyle.THIN);
-		sourceMissingOverallStatusCellStyle.setBorderTop(BorderStyle.THIN);
-		sourceMissingOverallStatusCellStyle.setBorderLeft(BorderStyle.THIN);
-		sourceMissingOverallStatusCellStyle.setBorderRight(BorderStyle.THIN);
+	public XSSFCellStyle createGeneralDataXSSFCellStyle(SXSSFWorkbook workbook) {
+		XSSFCellStyle generalDataXSSFCellStyle = (XSSFCellStyle) workbook.createCellStyle();
+		generalDataXSSFCellStyle.setFillForegroundColor(IndexedColors.WHITE.getIndex());
+		generalDataXSSFCellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+		generalDataXSSFCellStyle.setBorderBottom(BorderStyle.THIN);
+		generalDataXSSFCellStyle.setBorderTop(BorderStyle.THIN);
+		generalDataXSSFCellStyle.setBorderLeft(BorderStyle.THIN);
+		generalDataXSSFCellStyle.setBorderRight(BorderStyle.THIN);
 		
+		
+
+		return generalDataXSSFCellStyle;
+	}
+	
+	public XSSFFont getHeaderFont() {
 		XSSFFont font = new XSSFFont();
 		font.setBold(true);
-		sourceMissingOverallStatusCellStyle.setFont(font);
+		
+		return font;
 
-		return sourceMissingOverallStatusCellStyle;
 	}
 
 

@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
@@ -26,22 +27,22 @@ public class TargetFileReader extends Base {
 		try {
 			File csvData = new File(prop.getProperty("csv.targetFilesPath") + "/" + targetFileName);
 			CSVParser parser = CSVParser.parse(csvData, StandardCharsets.UTF_8, CSVFormat.DEFAULT.builder().setHeader().setSkipHeaderRecord(true).setIgnoreHeaderCase(true).build());
-			
-		
 			String targetUniqueId = prop.getProperty("csv.targetUniqueId");
-			TargetFilePropertyList targetFilePropList = new TargetFilePropertyList();
-			ArrayList<String> targetProperties = targetFilePropList.getTargetFilePropertyList();
+
+			Map<String, Integer> targetProperties =parser.getHeaderMap();
+			targetProperties.remove(targetUniqueId);
+//			TargetFilePropertyList targetFilePropList = new TargetFilePropertyList();
+//			ArrayList<String> targetProperties = targetFilePropList.getTargetFilePropertyList();
 			for (CSVRecord csvRecord : parser) {
 				
 				
 				HashMap<String, String> rowData = new HashMap<String, String> ();
 				rowData.put(targetUniqueId, csvRecord.get(targetUniqueId));
-				for(String targetProp : targetProperties)
+				for(String targetProp : targetProperties.keySet())
 				{
-					if(csvRecord.isMapped(targetProp))
-					rowData.put(targetProp, csvRecord.get(targetProp));
-					else
-						rowData.put(targetProp, "");
+					
+					rowData.put(targetProp, csvRecord.get(targetProperties.get(targetProp)));
+					
 						
 				}
 				rowData.put("Flag", "RED");
