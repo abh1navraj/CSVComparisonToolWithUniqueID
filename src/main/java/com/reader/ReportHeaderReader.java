@@ -1,31 +1,37 @@
 package com.reader;
 
 import java.util.ArrayList;
-import java.util.Set;
+import java.util.HashMap;
 
 import com.base.Base;
-import com.util.SourceFilePropertyList;
-import com.util.TargetFilePropertyList;
+import com.util.HeaderMapper;
 
 public class ReportHeaderReader extends Base {
 	/**
 	 * Generate the header of the comparison result excel report.
 	 * @return an ArrayList containing compared header
 	 */
-	public ArrayList<String> getReportHeader(){
+	public ArrayList<String> getReportHeader(String sourceFileName){
 		
 		ArrayList<String> reportHeader = new ArrayList<String>();
 		reportHeader.add("OverAllStatus");
+		reportHeader.add(prop.getProperty("csv.sourceUniqueId"));
+		reportHeader.add(prop.getProperty("csv.targetUniqueId"));
+
 		
-		SourceFilePropertyList sourceFilePropList = new SourceFilePropertyList();
-		ArrayList<String> sourceProperties = sourceFilePropList.getSourcePropertyList();
+//		ArrayList<String> sourceProperties = SourceFilePropertyList.sourcePropertyList;
 		
-		TargetFilePropertyList targetFilePropList = new TargetFilePropertyList();
-		ArrayList<String> targetProperties = targetFilePropList.getTargetPropertyList();
-		for(int i =0; i< sourceProperties.size(); i++)
+//		TargetFilePropertyList targetFilePropList = new TargetFilePropertyList();
+//		ArrayList<String> targetProperties = targetFilePropList.getTargetFilePropertyList();
+		
+		HeaderMapper headerMapper = new HeaderMapper();
+		ArrayList<String> csvComparisonHeaders = headerMapper.getCSVComparisonHeader(sourceFileName);
+		HashMap<String, String> headerMapping = headerMapper.getHeaderMapping(sourceFileName);
+		
+		for(String csvComparisonHeader: csvComparisonHeaders)
 		{
-			reportHeader.add("Source_" + sourceProperties.get(i));
-			reportHeader.add("Target_" + targetProperties.get(i));
+			reportHeader.add("Source_" + csvComparisonHeader);
+			reportHeader.add("Target_" + headerMapping.get(csvComparisonHeader));
 		
 		}
 		

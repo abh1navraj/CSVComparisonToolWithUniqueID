@@ -1,10 +1,12 @@
 package com.compare;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 
 import com.util.SourceFileNames;
 import com.util.TargetFileName;
+import com.writer.ExcelReportWriter;
 
 public class CSVCompareApp {
 
@@ -21,7 +23,9 @@ public class CSVCompareApp {
 			TargetFileName targetFileName = new TargetFileName();
 			String targetFilname = targetFileName.getTargetFileName(sourceFileName);
 			CompareCSVWithUniqueId compareCSVWithUniqueID = new CompareCSVWithUniqueId();
-			compareCSVWithUniqueID.compareCSVWithUniqueId(sourceFileName, targetFilname);
+			ArrayList<ArrayList<String[]>> comparisonResults =compareCSVWithUniqueID.compareCSVWithUniqueId(sourceFileName, targetFilname);
+			ExcelReportWriter excelReportWriter = new ExcelReportWriter();
+			excelReportWriter.writeComparisonReportInExcel(sourceFileName, comparisonResults);
 		}
 		
 	}
